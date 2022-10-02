@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'API.dart';
-import 'MainPage.dart';
+import '../API/RemoteMovieAPI.dart';
+import '../API/Models/Movie.dart';
+import './List/List.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    futureMovie = fetchMovies('https://api.themoviedb.org/3/movie/popular?api_key=dca309ca9e7c31eeb41785f6cf541371&language=fr-FR&page=1');
+    futureMovie = RemoteMovieAPI().getMovies();
   }
 
   @override
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               return const CircularProgressIndicator();
             },
           ),
-      ),
+        ),
       ),
     );
   }
